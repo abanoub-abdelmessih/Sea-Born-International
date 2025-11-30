@@ -4,6 +4,19 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Figma Colors */
+  --color-csk-100: #D3E5F8;
+  --color-csk-200: #A7CBF1;
+  --color-csk-300: #7BB1EA;
+  --color-csk-400: #4F97E3;
+  --color-csk-500: #1A5BA1;
+  --color-csk-600: #1C64B0;
+  --color-csk-700: #154B84;
+  --color-csk-800: #0E3258;
+  --color-csk-900: #07192C;
+  --color-csk-950: #040C16;
+
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -116,6 +129,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
