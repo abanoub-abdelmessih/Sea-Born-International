@@ -10,23 +10,23 @@ export const menu: Menu[] = [
   { title: "Home", url: "/" },
   {
     title: "Services",
-    url: "/",
+    url: "/services",
   },
   {
     title: "Tracking",
-    url: "/",
+    url: "/tracking",
   },
   {
     title: "Equipments",
-    url: "/",
+    url: "/equipments",
   },
   {
     title: "Careers",
-    url: "/",
+    url: "/careers",
   },
   {
     title: "Contact Us",
-    url: "/",
+    url: "/contact-us",
   },
 ];
 

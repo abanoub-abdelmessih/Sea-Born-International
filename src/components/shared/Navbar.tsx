@@ -129,9 +129,7 @@ const renderMenuItem = (item: Menu, pathName: string) => {
         href={item.url}
         className={cn(
           "px-4 py-2 font-medium",
-          pathName === item.url
-            ? "rounded-b-none border-b-2 border-csk-500"
-            : ""
+          pathName === item.url && "rounded-b-none border-b-2 border-csk-500"
         )}
       >
         {item.title}
