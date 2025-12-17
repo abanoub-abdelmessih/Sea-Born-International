@@ -124,9 +124,13 @@ export default function CarouselWithPagination() {
               />
 
               {/* Slide content */}
-              <div className="flex flex-col gap-4 text-white">
-                <h3 className="font-semibold text-6xl">{slide.title}</h3>
-                <h6 className="font-normal max-w-3xl">{slide.subtitle}</h6>
+              <div className="flex flex-col gap-3 lg:gap-4 text-white px-4">
+                <h3 className="font-semibold text-3xl lg:text-6xl">
+                  {slide.title}
+                </h3>
+                <h6 className="font-normal max-w-3xl text-sm">
+                  {slide.subtitle}
+                </h6>
                 <Button className="w-fit mt-3" size="lg" variant="main">
                   Get a Quote
                 </Button>
@@ -143,7 +147,7 @@ export default function CarouselWithPagination() {
             key={index}
             onClick={() => api?.scrollTo(index)}
             className={cn(
-              "h-3.5 w-8 rounded-2xl bg-gray-400 cursor-pointer transition-colors hover:bg-gray-300",
+              "h-2.5 lg:h-3.5 w-6 lg:w-8 rounded-2xl bg-gray-400 cursor-pointer transition-colors hover:bg-gray-300",
               {
                 "bg-csk-500": current === index + 1,
               }
