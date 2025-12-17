@@ -16,6 +16,8 @@
   --color-csk-900: #07192c;
   --color-csk-950: #040c16;
 
+  --font-Montserrat: var(--font-Montserrat);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
