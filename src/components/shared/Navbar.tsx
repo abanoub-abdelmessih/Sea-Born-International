@@ -22,8 +22,12 @@ import Link from "next/link";
 import Image from "next/image";
 import LangToggle from "./LangToggle";
 import { Separator } from "../ui/separator";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 const Navbar = () => {
+  const pathName = usePathname();
+
   return (
     <section className="py-4">
       <div className="container">
@@ -41,14 +45,13 @@ const Navbar = () => {
           </Link>
 
           {/* Navbar Menu */}
-
           <NavigationMenu>
             <NavigationMenuList className="gap-6">
               {/* Navbar Links */}
-              {menu.map((item) => renderMenuItem(item))}
+              {menu.map((item) => renderMenuItem(item, pathName))}
 
               {/* Separator Component */}
-              <Separator orientation="vertical" />
+              <Separator orientation="vertical" className="bg-csk-500" />
 
               {/* Language Toggle */}
               <NavigationMenuItem>
@@ -59,11 +62,14 @@ const Navbar = () => {
 
           {/* Navbar Buttons */}
           <div className="flex gap-2">
-            <Button asChild variant="outline" size="sm">
-              <a href={auth.login.url}>{auth.login.title}</a>
+            {/* Login Button */}
+            <Button asChild variant="main">
+              <Link href={auth.login.url}>{auth.login.title}</Link>
             </Button>
-            <Button asChild size="sm">
-              <a href={auth.signup.url}>{auth.signup.title}</a>
+
+            {/* Signup Button */}
+            <Button asChild variant="outline">
+              <Link href={auth.signup.url}>{auth.signup.title}</Link>
             </Button>
           </div>
         </nav>
@@ -116,12 +122,17 @@ const Navbar = () => {
   );
 };
 
-const renderMenuItem = (item: Menu) => {
+const renderMenuItem = (item: Menu, pathName: string) => {
   return (
     <NavigationMenuItem key={item.title}>
       <NavigationMenuLink
         href={item.url}
-        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
+        className={cn(
+          "px-4 py-2 font-medium",
+          pathName === item.url
+            ? "rounded-b-none border-b-2 border-csk-500"
+            : ""
+        )}
       >
         {item.title}
       </NavigationMenuLink>
