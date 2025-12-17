@@ -5,17 +5,16 @@
 
 @theme inline {
   /* Figma Colors */
-  --color-csk-100: #D3E5F8;
-  --color-csk-200: #A7CBF1;
-  --color-csk-300: #7BB1EA;
-  --color-csk-400: #4F97E3;
-  --color-csk-500: #1A5BA1;
-  --color-csk-600: #1C64B0;
-  --color-csk-700: #154B84;
-  --color-csk-800: #0E3258;
-  --color-csk-900: #07192C;
-  --color-csk-950: #040C16;
-
+  --color-csk-100: #d3e5f8;
+  --color-csk-200: #a7cbf1;
+  --color-csk-300: #7bb1ea;
+  --color-csk-400: #4f97e3;
+  --color-csk-500: #1a5ba1;
+  --color-csk-600: #1c64b0;
+  --color-csk-700: #154b84;
+  --color-csk-800: #0e3258;
+  --color-csk-900: #07192c;
+  --color-csk-950: #040c16;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -132,5 +131,9 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  .container {
+    @apply mx-auto;
   }
 }
