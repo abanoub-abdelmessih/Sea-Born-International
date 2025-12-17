@@ -1,5 +1,8 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu as MenuIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -12,130 +15,179 @@ import {
 import {
   Sheet,
   SheetContent,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { auth, logo, menu } from "@/const/NavbarLinks";
-import { Menu } from "@/types/NavbarTypes";
-import Link from "next/link";
-import Image from "next/image";
-import LangToggle from "./LangToggle";
-import { Separator } from "../ui/separator";
-import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
 
-const Navbar = () => {
-  const pathName = usePathname();
+import LangToggle from "./LangToggle";
+import { cn } from "@/lib/utils";
+import {
+  authConfig,
+  brandConfig,
+  navigationConfig,
+  NavigationItem,
+} from "@/const/NavbarLinks";
+
+/* -------------------------------------------------------------------------- */
+/*                                   Navbar component                         */
+/* -------------------------------------------------------------------------- */
+
+export function Navbar() {
+  const pathname = usePathname();
 
   return (
-    <section className="py-4">
-      <div className="container">
-        {/* Desktop Menu */}
-        <nav className="hidden items-center justify-between lg:flex">
-          {/* Logo */}
-          <Link href={logo.url}>
-            <Image
-              src={logo.src}
-              className="max-h-8 dark:invert"
-              alt={logo.alt}
-              width={50}
-              height={44}
-            />
-          </Link>
+    <section className="py-4 border-b shadow">
+      {/* Desktop Navbar */}
+      <DesktopNavbar pathname={pathname} />
 
-          {/* Navbar Menu */}
-          <NavigationMenu>
-            <NavigationMenuList className="gap-6">
-              {/* Navbar Links */}
-              {menu.map((item) => renderMenuItem(item, pathName))}
-
-              {/* Separator Component */}
-              <Separator orientation="vertical" className="bg-csk-500" />
-
-              {/* Language Toggle */}
-              <NavigationMenuItem>
-                <LangToggle />
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-
-          {/* Navbar Buttons */}
-          <div className="flex gap-2">
-            {/* Login Button */}
-            <Button asChild variant="main">
-              <Link href={auth.login.url}>{auth.login.title}</Link>
-            </Button>
-
-            {/* Signup Button */}
-            <Button asChild variant="outline">
-              <Link href={auth.signup.url}>{auth.signup.title}</Link>
-            </Button>
-          </div>
-        </nav>
-
-        {/* Mobile Menu */}
-        <div className="block lg:hidden">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <a href={logo.url} className="flex items-center gap-2">
-              <img
-                src={logo.src}
-                className="max-h-8 dark:invert"
-                alt={logo.alt}
-              />
-            </a>
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="outline" size="icon">
-                  <MenuIcon className="size-4" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent className="overflow-y-auto" side="top">
-                <SheetHeader>
-                  <SheetTitle>
-                    <a href={logo.url} className="flex items-center gap-2">
-                      <img
-                        src={logo.src}
-                        className="max-h-8 dark:invert"
-                        alt={logo.alt}
-                      />
-                    </a>
-                  </SheetTitle>
-                </SheetHeader>
-                <div className="flex flex-col gap-6 p-4">
-                  <div className="flex flex-col gap-3">
-                    <Button asChild variant="outline">
-                      <a href={auth.login.url}>{auth.login.title}</a>
-                    </Button>
-                    <Button asChild>
-                      <a href={auth.signup.url}>{auth.signup.title}</a>
-                    </Button>
-                  </div>
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
-        </div>
-      </div>
+      {/* Mobile Navbar */}
+      <MobileNavbar pathname={pathname} />
     </section>
   );
-};
+}
 
-const renderMenuItem = (item: Menu, pathName: string) => {
+/* -------------------------------------------------------------------------- */
+/*                                Desktop Navbar                                   */
+/* -------------------------------------------------------------------------- */
+
+function DesktopNavbar({ pathname }: { pathname: string }) {
   return (
-    <NavigationMenuItem key={item.title}>
+    <nav className="hidden container items-center justify-between lg:flex">
+      <BrandLogo />
+      <NavLinks pathname={pathname} />
+      <AuthActions />
+    </nav>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Mobile Navbar                                   */
+/* -------------------------------------------------------------------------- */
+
+function MobileNavbar({ pathname }: { pathname: string }) {
+  return (
+    <nav className="flex container items-center justify-between lg:hidden px-4">
+      <BrandLogo />
+
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline" size="icon">
+            <MenuIcon className="size-4" />
+          </Button>
+        </SheetTrigger>
+
+        <SheetContent side="top">
+          {/* Sheet Header */}
+          <SheetHeader>
+            <SheetTitle>
+              <BrandLogo />
+            </SheetTitle>
+          </SheetHeader>
+
+          {/* NavLinks */}
+          <NavLinks pathname={pathname} />
+
+          {/* Sheet Footer */}
+          <SheetFooter>
+            <AuthActions />
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
+    </nav>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Brand Logo                                   */
+/* -------------------------------------------------------------------------- */
+
+function BrandLogo() {
+  return (
+    <Link href={brandConfig.url}>
+      <Image
+        src={brandConfig.logo.src}
+        alt={brandConfig.logo.alt}
+        width={50}
+        height={44}
+        className="max-h-8 dark:invert"
+        priority
+      />
+    </Link>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              Navigation Links                               */
+/* -------------------------------------------------------------------------- */
+
+function NavLinks({ pathname }: { pathname: string }) {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList className="flex-col gap-8 lg:flex-row w-full">
+        {navigationConfig.items.map((item) => (
+          <NavLinkItem
+            key={item.id}
+            item={item}
+            isActive={pathname === item.href}
+          />
+        ))}
+
+        <Separator
+          orientation="vertical"
+          className="hidden bg-csk-500 lg:block"
+        />
+
+        <NavigationMenuItem className="hidden lg:block">
+          <LangToggle />
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             Single Nav Item                                 */
+/* -------------------------------------------------------------------------- */
+
+interface NavLinkItemProps {
+  item: NavigationItem;
+  isActive: boolean;
+}
+
+function NavLinkItem({ item, isActive }: NavLinkItemProps) {
+  return (
+    <NavigationMenuItem className="w-full">
       <NavigationMenuLink
-        href={item.url}
+        asChild
+        href={item.href}
         className={cn(
-          "px-4 py-2 font-medium",
-          pathName === item.url && "rounded-b-none border-b-2 border-csk-500"
+          "px-4 py-2 font-medium cursor-pointer",
+          isActive && "border-b-2 border-csk-500 rounded-b-none"
         )}
       >
-        {item.title}
+        <span>{item.label}</span>
       </NavigationMenuLink>
     </NavigationMenuItem>
   );
-};
+}
 
-export { Navbar };
+/* -------------------------------------------------------------------------- */
+/*                               Auth Actions                                  */
+/* -------------------------------------------------------------------------- */
+
+function AuthActions() {
+  return (
+    <div className="flex flex-col gap-2 lg:flex-row">
+      <Button asChild variant="main">
+        <Link href={authConfig.login.href}>{authConfig.login.label}</Link>
+      </Button>
+
+      <Button asChild variant="outline">
+        <Link href={authConfig.signup.href}>{authConfig.signup.label}</Link>
+      </Button>
+    </div>
+  );
+}

@@ -1,37 +1,64 @@
-import { Auth, Logo, Menu } from "@/types/NavbarTypes";
+/* -------------------------------------------------------------------------- */
+/*                                   Brand                                     */
+/* -------------------------------------------------------------------------- */
 
-export const logo: Logo = {
+interface BrandLogo {
+  src: string;
+  alt: string;
+}
+
+interface BrandConfig {
+  url: string;
+  logo: BrandLogo;
+}
+
+export const brandConfig: BrandConfig = {
   url: "/",
-  src: "/logo.svg",
-  alt: "logo",
+  logo: {
+    src: "/logo.svg",
+    alt: "Brand Logo",
+  },
 };
 
-export const menu: Menu[] = [
-  { title: "Home", url: "/" },
-  {
-    title: "Services",
-    url: "/services",
-  },
-  {
-    title: "Tracking",
-    url: "/tracking",
-  },
-  {
-    title: "Equipments",
-    url: "/equipments",
-  },
-  {
-    title: "Careers",
-    url: "/careers",
-  },
-  {
-    title: "Contact Us",
-    url: "/contact-us",
-  },
-];
+/* -------------------------------------------------------------------------- */
+/*                                   Navigation                                     */
+/* -------------------------------------------------------------------------- */
 
-// Auth Links
-export const auth: Auth = {
-  login: { title: "Login", url: "#" },
-  signup: { title: "Sign up", url: "#" },
+export interface NavigationItem {
+  id: string;
+  label: string;
+  href: string;
+}
+
+interface NavigationConfig {
+  items: NavigationItem[];
+}
+
+export const navigationConfig: NavigationConfig = {
+  items: [
+    { id: "home", label: "Home", href: "/" },
+    { id: "products", label: "Products", href: "/products" },
+    { id: "resources", label: "Resources", href: "/resources" },
+    { id: "pricing", label: "Pricing", href: "/pricing" },
+    { id: "blog", label: "Blog", href: "/blog" },
+  ],
+};
+
+/* -------------------------------------------------------------------------- */
+/*                                   Auth                                     */
+/* -------------------------------------------------------------------------- */
+
+interface AuthLink {
+  label: string;
+  href: string;
+}
+
+interface AuthConfig {
+  login: AuthLink;
+  signup: AuthLink;
+}
+
+export const authConfig: AuthConfig = {
+  login: { label: "Login", href: "/login" },
+  signup: { label: "Sign Up", href: "/signup" },
 };
