@@ -20,6 +20,8 @@ import { auth, logo, menu } from "@/const/NavbarLinks";
 import { Menu } from "@/types/NavbarTypes";
 import Link from "next/link";
 import Image from "next/image";
+import LangToggle from "./LangToggle";
+import { Separator } from "../ui/separator";
 
 const Navbar = () => {
   return (
@@ -39,13 +41,21 @@ const Navbar = () => {
           </Link>
 
           {/* Navbar Menu */}
-          <div className="flex items-center">
-            <NavigationMenu>
-              <NavigationMenuList>
-                {menu.map((item) => renderMenuItem(item))}
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
+
+          <NavigationMenu>
+            <NavigationMenuList className="gap-6">
+              {/* Navbar Links */}
+              {menu.map((item) => renderMenuItem(item))}
+
+              {/* Separator Component */}
+              <Separator orientation="vertical" />
+
+              {/* Language Toggle */}
+              <NavigationMenuItem>
+                <LangToggle />
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
 
           {/* Navbar Buttons */}
           <div className="flex gap-2">
