@@ -63,6 +63,12 @@ export default function CarouselWithPagination() {
   // Currently selected slide index (1-based for UI)
   const [current, setCurrent] = React.useState(0);
 
+  // Autoplay state
+  const [isPaused, setIsPaused] = React.useState(false);
+
+  // Autoplay configuration
+  const AUTOPLAY_INTERVAL = 5000; // 5 seconds
+
   // Sync carousel state with pagination when slide changes
   React.useEffect(() => {
     if (!api) return;
@@ -74,8 +80,32 @@ export default function CarouselWithPagination() {
     });
   }, [api]);
 
+  // Autoplay effect
+  React.useEffect(() => {
+    if (!api || isPaused) return;
+
+    const interval = setInterval(() => {
+      if (!api.canScrollNext()) {
+        // If at the last slide, go back to first
+        api.scrollTo(0);
+      } else {
+        api.scrollNext();
+      }
+    }, AUTOPLAY_INTERVAL);
+
+    return () => clearInterval(interval);
+  }, [api, isPaused]);
+
+  // Pause autoplay on hover
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
+
   return (
-    <section className="w-dvw relative">
+    <section
+      className="w-dvw relative"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <Carousel setApi={setApi} className="w-full">
         <CarouselContent>
           {heroSlides.map((slide) => (
@@ -113,13 +143,19 @@ export default function CarouselWithPagination() {
             key={index}
             onClick={() => api?.scrollTo(index)}
             className={cn(
-              "h-3.5 w-8 rounded-2xl bg-gray-400 cursor-pointer transition-colors",
+              "h-3.5 w-8 rounded-2xl bg-gray-400 cursor-pointer transition-colors hover:bg-gray-300",
               {
                 "bg-csk-500": current === index + 1,
               }
             )}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
+      </div>
+
+      {/* Autoplay status indicator */}
+      <div className="absolute bottom-5 right-5 z-10 text-white text-sm bg-black/30 px-2 py-1 rounded">
+        {isPaused ? "Paused" : "Autoplay"}
       </div>
     </section>
   );
