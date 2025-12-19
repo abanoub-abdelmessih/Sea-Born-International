@@ -7,8 +7,10 @@ export default function Home() {
       {/* Hero Section */}
       <CarouselWithPagination />
 
-      {/* Why Choose Us Section */}
-      <WhyChooseUs />
+      <main className="container flex flex-col gap-20 py-20">
+        {/* Why Choose Us Section */}
+        <WhyChooseUs />
+      </main>
     </>
   );
 }

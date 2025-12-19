@@ -61,7 +61,7 @@ export default function CarouselWithPagination() {
     useCarousel();
   return (
     <header
-      className="w-dvw relative"
+      className="w-full relative"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
