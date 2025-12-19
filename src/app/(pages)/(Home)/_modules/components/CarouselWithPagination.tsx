@@ -1,15 +1,15 @@
 "use client";
 
-import * as React from "react";
 import {
   Carousel,
+  CarouselApi,
   CarouselContent,
   CarouselItem,
-  type CarouselApi,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import useCarousel from "../hooks/useCarousel";
 
 // Data model for a single hero slide
 interface HeroSlide {
@@ -57,51 +57,10 @@ const heroSlides: HeroSlide[] = [
 ];
 
 export default function CarouselWithPagination() {
-  // Carousel API instance (provided by shadcn carousel)
-  const [api, setApi] = React.useState<CarouselApi>();
-
-  // Currently selected slide index (1-based for UI)
-  const [current, setCurrent] = React.useState(0);
-
-  // Autoplay state
-  const [isPaused, setIsPaused] = React.useState(false);
-
-  // Autoplay configuration
-  const AUTOPLAY_INTERVAL = 5000; // 5 seconds
-
-  // Sync carousel state with pagination when slide changes
-  React.useEffect(() => {
-    if (!api) return;
-
-    setCurrent(api.selectedScrollSnap() + 1);
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-  }, [api]);
-
-  // Autoplay effect
-  React.useEffect(() => {
-    if (!api || isPaused) return;
-
-    const interval = setInterval(() => {
-      if (!api.canScrollNext()) {
-        // If at the last slide, go back to first
-        api.scrollTo(0);
-      } else {
-        api.scrollNext();
-      }
-    }, AUTOPLAY_INTERVAL);
-
-    return () => clearInterval(interval);
-  }, [api, isPaused]);
-
-  // Pause autoplay on hover
-  const handleMouseEnter = () => setIsPaused(true);
-  const handleMouseLeave = () => setIsPaused(false);
-
+  const { api, setApi, current, isPaused, handleMouseEnter, handleMouseLeave } =
+    useCarousel();
   return (
-    <section
+    <header
       className="w-dvw relative"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -141,26 +100,41 @@ export default function CarouselWithPagination() {
       </Carousel>
 
       {/* Pagination controls */}
-      <div className="mt-4 flex items-center justify-center gap-2 absolute bottom-5 left-1/2 transform -translate-x-1/2 z-10">
-        {Array.from({ length: heroSlides.length }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => api?.scrollTo(index)}
-            className={cn(
-              "h-2.5 lg:h-3.5 w-6 lg:w-8 rounded-2xl bg-gray-400 cursor-pointer transition-colors hover:bg-gray-300",
-              {
-                "bg-csk-500": current === index + 1,
-              }
-            )}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+      <PaginationControls api={api} current={current} />
 
       {/* Autoplay status indicator */}
       <div className="absolute bottom-5 right-5 z-10 text-white text-sm bg-black/30 px-2 py-1 rounded">
         {isPaused ? "Paused" : "Autoplay"}
       </div>
-    </section>
+    </header>
+  );
+}
+
+{
+  /* Pagination controls component */
+}
+function PaginationControls({
+  api,
+  current,
+}: {
+  api: CarouselApi;
+  current: number;
+}) {
+  return (
+    <div className="mt-4 flex items-center justify-center gap-2 absolute bottom-5 left-1/2 transform -translate-x-1/2 z-10">
+      {Array.from({ length: heroSlides.length }).map((_, index) => (
+        <button
+          key={index}
+          onClick={() => api?.scrollTo(index)}
+          className={cn(
+            "h-2.5 lg:h-3.5 w-6 lg:w-8 rounded-2xl bg-gray-400 cursor-pointer duration-300 hover:bg-gray-300",
+            {
+              "bg-csk-500 hover:bg-csk-300": current === index + 1,
+            }
+          )}
+          aria-label={`Go to slide ${index + 1}`}
+        />
+      ))}
+    </div>
   );
 }

@@ -1,10 +1,14 @@
 import CarouselWithPagination from "./_modules/components/CarouselWithPagination";
+import WhyChooseUs from "./_modules/sections/WhyChooseUs";
 
 export default function Home() {
   return (
-    <main>
+    <>
       {/* Hero Section */}
       <CarouselWithPagination />
-    </main>
+
+      {/* Why Choose Us Section */}
+      <WhyChooseUs />
+    </>
   );
 }
