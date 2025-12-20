@@ -1,3 +1,4 @@
+import Heading from "@/components/shared/Heading";
 import Image from "next/image";
 
 const services = [
@@ -29,27 +30,36 @@ const services = [
 
 export default function OurServices() {
   return (
-    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {services.map((service, index) => (
-        <div
-          key={index}
-          className="rounded-2xl relative aspect-3/5 bg-linear-to-t from-black/80 to-transparent text-white flex flex-col justify-end group overflow-hidden"
-        >
-          <Image
-            src={service.src}
-            alt={service.alt}
-            fill
-            className="object-cover -z-10 group-hover:scale-110 duration-300"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          />
+    <section className="flex flex-col gap-4 lg:gap-8">
+      {/* Section title */}
+      <Heading title="Our Services" />
 
-          {/* Image Text */}
-          <div className="flex flex-col gap-4 p-5">
-            <h3 className="font-semibold text-2xl">{service.title}</h3>
-            <p className="font-normal text-sm leading-normal">{service.desc}</p>
+      {/* Services grid */}
+      <main className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+        {services.map((service, index) => (
+          <div
+            key={index}
+            className="rounded-2xl relative aspect-2/3 lg:aspect-3/5 bg-linear-to-t from-black/80 to-transparent text-white flex flex-col justify-end group overflow-hidden"
+          >
+            {/* Service background image */}
+            <Image
+              src={service.src}
+              alt={service.alt}
+              fill
+              className="object-cover -z-10 group-hover:scale-110 duration-300"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            />
+
+            {/* Service content */}
+            <div className="flex flex-col gap-4 p-5">
+              <h3 className="font-semibold text-2xl">{service.title}</h3>
+              <p className="font-normal text-sm leading-normal">
+                {service.desc}
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </main>
     </section>
   );
 }
