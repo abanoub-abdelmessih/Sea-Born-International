@@ -9,7 +9,7 @@ export default function AboutCompany() {
         <Heading title="About Company" />
 
         {/* About Text */}
-        <p className="font-normal text-base xl:text-xl max-w-2xl">
+        <p className="font-normal text-base xl:text-xl max-w-2xl leading-normal">
           Sea Born Egypt is a leading logistics provider with over a decade of
           experience in sea, air, and land freight.We offer end-to-end shipping
           solutions, from door-to-door delivery and oversized cargo handling to
