@@ -26,7 +26,7 @@ export default function WhyChooseUs() {
       {FEATURES.map(({ icon: Icon, text }, index) => (
         <Card
           key={index}
-          className="border-2 border-csk-500 items-center justify-center"
+          className="border-2 border-csk-500 items-center justify-center py-4"
         >
           <CardContent className="flex flex-col items-center justify-center text-center gap-4">
             <Icon size={28} className="text-csk-500" />

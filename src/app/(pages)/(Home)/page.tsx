@@ -1,4 +1,5 @@
 import CarouselWithPagination from "./_modules/components/CarouselWithPagination";
+import AboutCompany from "./_modules/sections/AboutCompany";
 import WhyChooseUs from "./_modules/sections/WhyChooseUs";
 
 export default function Home() {
@@ -10,6 +11,9 @@ export default function Home() {
       <main className="container flex flex-col gap-8 lg:gap-20 py-20">
         {/* Why Choose Us Section */}
         <WhyChooseUs />
+
+        {/* About Company Section*/}
+        <AboutCompany />
       </main>
     </>
   );
