@@ -16,21 +16,21 @@ const FEATURES = [
   },
   {
     icon: Truck,
-    text: "Oversized & General Cargo Experts",
+    text: "Oversized Cargo Experts",
   },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="grid gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="grid gap-6 lg:gap-8 sm:grid-cols-2 xl:grid-cols-4">
       {FEATURES.map(({ icon: Icon, text }, index) => (
         <Card
           key={index}
-          className="border-2 border-csk-500 transition hover:shadow-lg"
+          className="border-2 border-csk-500 items-center justify-center"
         >
           <CardContent className="flex flex-col items-center justify-center text-center gap-4">
             <Icon size={28} className="text-csk-500" />
-            <p className="font-medium text-lg lg:text-2xl max-w-3xs">{text}</p>
+            <p className="font-medium text-lg xl:text-2xl max-w-3xs">{text}</p>
           </CardContent>
         </Card>
       ))}
