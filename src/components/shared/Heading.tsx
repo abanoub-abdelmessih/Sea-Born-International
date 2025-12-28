@@ -29,7 +29,11 @@ export default function Heading({
       </div>
 
       {children && (
-        <Button variant={"link"} asChild>
+        <Button
+          variant={"link"}
+          asChild
+          className="hidden lg:flex text-csk-500"
+        >
           {children}
         </Button>
       )}
