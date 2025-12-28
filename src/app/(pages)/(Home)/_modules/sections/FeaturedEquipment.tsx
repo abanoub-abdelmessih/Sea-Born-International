@@ -29,6 +29,7 @@ export default function FeaturedEquipment() {
         </Link>
       </Heading>
 
+      {/* Main Content */}
       <main className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {Equipment.map((equ, index) => (
           <div key={index} className="flex flex-col gap-4">
@@ -44,6 +45,8 @@ export default function FeaturedEquipment() {
           </div>
         ))}
       </main>
+
+      {/* Section Footer */}
       <footer className="lg:hidden">
         <Button asChild variant={"main"} className="w-full">
           <Link href={"/equipments"}>

@@ -2,6 +2,7 @@ import CarouselWithPagination from "./_modules/components/CarouselWithPagination
 import AboutCompany from "./_modules/sections/AboutCompany";
 import FeaturedEquipment from "./_modules/sections/FeaturedEquipment";
 import OurServices from "./_modules/sections/OurServices";
+import Testimonials from "./_modules/sections/Testimonials";
 import WhyChooseUs from "./_modules/sections/WhyChooseUs";
 
 export default function Home() {
@@ -22,6 +23,9 @@ export default function Home() {
 
         {/* Featured Equipment Section*/}
         <FeaturedEquipment />
+
+        {/* Testimonials Section*/}
+        <Testimonials />
       </main>
     </>
   );
