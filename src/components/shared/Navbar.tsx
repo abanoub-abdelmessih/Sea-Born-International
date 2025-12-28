@@ -125,8 +125,8 @@ function BrandLogo() {
 
 function NavLinks({ pathname }: { pathname: string }) {
   return (
-    <NavigationMenu>
-      <NavigationMenuList className="flex-col gap-8 lg:flex-row w-full">
+    <div>
+      <ul className="flex flex-col gap-6 lg:flex-row w-full px-3">
         {navigationConfig.items.map((item) => (
           <NavLinkItem
             key={item.id}
@@ -140,11 +140,9 @@ function NavLinks({ pathname }: { pathname: string }) {
           className="hidden bg-csk-500 lg:block"
         />
 
-        <NavigationMenuItem className="hidden lg:block">
-          <LangToggle />
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+        <LangToggle />
+      </ul>
+    </div>
   );
 }
 
@@ -159,18 +157,18 @@ interface NavLinkItemProps {
 
 function NavLinkItem({ item, isActive }: NavLinkItemProps) {
   return (
-    <NavigationMenuItem className="w-full">
-      <NavigationMenuLink
+    <li>
+      <Button
+        variant={"ghost"}
         asChild
-        href={item.href}
         className={cn(
-          "px-4 py-2 font-medium cursor-pointer",
+          "p-2.5 font-normal justify-start cursor-pointer text-nowrap w-full rounded-xl",
           isActive && "border-b-2 border-csk-500 rounded-b-none"
         )}
       >
-        <span>{item.label}</span>
-      </NavigationMenuLink>
-    </NavigationMenuItem>
+        <Link href={item.href}>{item.label}</Link>
+      </Button>
+    </li>
   );
 }
 

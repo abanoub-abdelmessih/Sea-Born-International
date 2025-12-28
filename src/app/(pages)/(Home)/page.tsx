@@ -1,5 +1,6 @@
 import CarouselWithPagination from "./_modules/components/CarouselWithPagination";
 import AboutCompany from "./_modules/sections/AboutCompany";
+import FeaturedEquipment from "./_modules/sections/FeaturedEquipment";
 import OurServices from "./_modules/sections/OurServices";
 import WhyChooseUs from "./_modules/sections/WhyChooseUs";
 
@@ -18,6 +19,9 @@ export default function Home() {
 
         {/* Our Services Section*/}
         <OurServices />
+
+        {/* Featured Equipment Section*/}
+        <FeaturedEquipment />
       </main>
     </>
   );
