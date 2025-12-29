@@ -37,10 +37,11 @@ interface NavigationConfig {
 export const navigationConfig: NavigationConfig = {
   items: [
     { id: "home", label: "Home", href: "/" },
-    { id: "products", label: "Products", href: "/products" },
-    { id: "resources", label: "Resources", href: "/resources" },
-    { id: "pricing", label: "Pricing", href: "/pricing" },
-    { id: "blog", label: "Blog", href: "/blog" },
+    { id: "services", label: "Services", href: "/services" },
+    { id: "tracking", label: "Tracking", href: "/tracking" },
+    { id: "equipments", label: "Equipments", href: "/equipments" },
+    { id: "careers", label: "Careers", href: "/careers" },
+    { id: "contact-us", label: "Contact us", href: "/contact-us" },
   ],
 };
 

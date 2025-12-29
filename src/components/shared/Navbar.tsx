@@ -1,17 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu as MenuIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu";
 import {
   Sheet,
   SheetContent,
@@ -26,10 +19,10 @@ import LangToggle from "./LangToggle";
 import { cn } from "@/lib/utils";
 import {
   authConfig,
-  brandConfig,
   navigationConfig,
   NavigationItem,
 } from "@/const/NavbarLinks";
+import BrandLogo from "./BrandLogo";
 
 /* -------------------------------------------------------------------------- */
 /*                                   Navbar component                         */
@@ -101,32 +94,13 @@ function MobileNavbar({ pathname }: { pathname: string }) {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                                Brand Logo                                   */
-/* -------------------------------------------------------------------------- */
-
-function BrandLogo() {
-  return (
-    <Link href={brandConfig.url}>
-      <Image
-        src={brandConfig.logo.src}
-        alt={brandConfig.logo.alt}
-        width={50}
-        height={44}
-        className="max-h-8 dark:invert"
-        priority
-      />
-    </Link>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
 /*                              Navigation Links                               */
 /* -------------------------------------------------------------------------- */
 
 function NavLinks({ pathname }: { pathname: string }) {
   return (
-    <NavigationMenu>
-      <NavigationMenuList className="flex-col gap-8 lg:flex-row w-full">
+    <div>
+      <ul className="flex flex-col gap-6 lg:flex-row w-full px-3">
         {navigationConfig.items.map((item) => (
           <NavLinkItem
             key={item.id}
@@ -140,11 +114,9 @@ function NavLinks({ pathname }: { pathname: string }) {
           className="hidden bg-csk-500 lg:block"
         />
 
-        <NavigationMenuItem className="hidden lg:block">
-          <LangToggle />
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+        <LangToggle />
+      </ul>
+    </div>
   );
 }
 
@@ -159,18 +131,18 @@ interface NavLinkItemProps {
 
 function NavLinkItem({ item, isActive }: NavLinkItemProps) {
   return (
-    <NavigationMenuItem className="w-full">
-      <NavigationMenuLink
+    <li>
+      <Button
+        variant={"ghost"}
         asChild
-        href={item.href}
         className={cn(
-          "px-4 py-2 font-medium cursor-pointer",
+          "p-2.5 font-normal justify-start cursor-pointer text-nowrap w-full rounded-xl",
           isActive && "border-b-2 border-csk-500 rounded-b-none"
         )}
       >
-        <span>{item.label}</span>
-      </NavigationMenuLink>
-    </NavigationMenuItem>
+        <Link href={item.href}>{item.label}</Link>
+      </Button>
+    </li>
   );
 }
 

@@ -5,6 +5,7 @@
 
 @theme inline {
   /* Figma Colors */
+  --color-csk-50: #e9f2fb;
   --color-csk-100: #d3e5f8;
   --color-csk-200: #a7cbf1;
   --color-csk-300: #7bb1ea;
@@ -136,6 +137,28 @@
   }
 
   .container {
-    @apply mx-auto;
+    @apply mx-auto px-5;
   }
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-csk-500);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-csk-600);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-csk-500) transparent;
 }
