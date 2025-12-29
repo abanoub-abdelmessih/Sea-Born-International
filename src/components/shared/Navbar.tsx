@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu as MenuIcon } from "lucide-react";
@@ -20,10 +19,10 @@ import LangToggle from "./LangToggle";
 import { cn } from "@/lib/utils";
 import {
   authConfig,
-  brandConfig,
   navigationConfig,
   NavigationItem,
 } from "@/const/NavbarLinks";
+import BrandLogo from "./BrandLogo";
 
 /* -------------------------------------------------------------------------- */
 /*                                   Navbar component                         */
@@ -91,25 +90,6 @@ function MobileNavbar({ pathname }: { pathname: string }) {
         </SheetContent>
       </Sheet>
     </nav>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*                                Brand Logo                                   */
-/* -------------------------------------------------------------------------- */
-
-function BrandLogo() {
-  return (
-    <Link href={brandConfig.url}>
-      <Image
-        src={brandConfig.logo.src}
-        alt={brandConfig.logo.alt}
-        width={50}
-        height={44}
-        className="max-h-8 dark:invert"
-        priority
-      />
-    </Link>
   );
 }
 
