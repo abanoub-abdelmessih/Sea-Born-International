@@ -4,6 +4,21 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Figma Colors */
+  --color-csk-50: #e9f2fb;
+  --color-csk-100: #d3e5f8;
+  --color-csk-200: #a7cbf1;
+  --color-csk-300: #7bb1ea;
+  --color-csk-400: #4f97e3;
+  --color-csk-500: #1a5ba1;
+  --color-csk-600: #1c64b0;
+  --color-csk-700: #154b84;
+  --color-csk-800: #0e3258;
+  --color-csk-900: #07192c;
+  --color-csk-950: #040c16;
+
+  --font-Montserrat: var(--font-Montserrat);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -116,7 +131,34 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
+  .container {
+    @apply mx-auto px-5;
+  }
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-csk-500);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-csk-600);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-csk-500) transparent;
 }
