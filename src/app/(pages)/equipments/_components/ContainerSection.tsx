@@ -12,18 +12,18 @@ export default function ContainerSection({
   containers,
 }: ContainerSectionProps) {
   return (
-    <section className="py-12 px-4 bg-white">
-      <div className="container mx-auto space-y-8">
-        {/* Section Title */}
-        <Heading title={title} className="text-csk-600" />
+    <section className="container mx-auto space-y-8 py-12">
 
-        {/* Container List */}
-        <div className="space-y-10">
-          {containers.map((container, index) => (
-            <ContainerCard key={index} container={container} />
-          ))}
-        </div>
+      {/* Section Title */}
+      <Heading title={title} className="text-csk-600" />
+
+      {/* Container List */}
+      <div className="space-y-10">
+        {containers.map((container, index) => (
+          <ContainerCard key={index} container={container} />
+        ))}
       </div>
+
     </section>
   );
 }

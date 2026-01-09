@@ -93,7 +93,7 @@ const containers20ft = [
 const containers40ft = [
   {
     title: "40' Standard Steel Container",
-    image: "/equipments/40-standard.png",
+    image: "/equipments/40/equipment-1.png",
 
     inside: "Inside",
     specs: {
@@ -110,7 +110,7 @@ const containers40ft = [
   },
   {
     title: "40' High Cube Container",
-    image: "/equipments/40-high-cube.png",
+    image: "/equipments/40/equipment-2.png",
 
     inside: "Inside",
     specs: {
@@ -127,7 +127,7 @@ const containers40ft = [
   },
   {
     title: "40' High Cube Reefer Container",
-    image: "/equipments/40-high-cube-reefer.png",
+    image: "/equipments/40/equipment-3.png",
 
     inside: "Inside",
     specs: {
@@ -144,7 +144,7 @@ const containers40ft = [
   },
   {
     title: "40' Dry Hardwood",
-    image: "/equipments/40-dry-hardwood.png",
+    image: "/equipments/40/equipment-4.png",
 
     inside: "Inside",
     specs: {
@@ -161,7 +161,7 @@ const containers40ft = [
   },
   {
     title: "40' Reefer High Cube",
-    image: "/equipments/40-reefer-high-cube.png",
+    image: "/equipments/40/equipment-5.png",
 
     inside: "Inside",
     specs: {
@@ -178,7 +178,7 @@ const containers40ft = [
   },
   {
     title: "40' Open Top Container",
-    image: "/equipments/40-open-top.png",
+    image: "/equipments/40/equipment-6.png",
 
     inside: "Inside",
     specs: {
@@ -195,7 +195,7 @@ const containers40ft = [
   },
   {
     title: "40' Flat Rack Container",
-    image: "/equipments/40-flat-rack.png",
+    image: "/equipments/40/equipment-7.png",
 
     inside: "Inside",
     specs: {
@@ -212,7 +212,7 @@ const containers40ft = [
   },
   {
     title: "45' HC Platform Container",
-    image: "/equipments/45-hc-platform.png",
+    image: "/equipments/40/equipment-8.png",
 
     inside: "Inside",
     specs: {
