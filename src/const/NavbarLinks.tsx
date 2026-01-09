@@ -38,9 +38,9 @@ export const navigationConfig: NavigationConfig = {
   items: [
     { id: "home", label: "Home", href: "/" },
     { id: "services", label: "Services", href: "/services" },
-    { id: "tracking", label: "Tracking", href: "/tracking" },
+    // { id: "tracking", label: "Tracking", href: "/tracking" },
     { id: "equipments", label: "Equipments", href: "/equipments" },
-    { id: "careers", label: "Careers", href: "/careers" },
+    // { id: "careers", label: "Careers", href: "/careers" },
     { id: "contact-us", label: "Contact us", href: "/contact-us" },
   ],
 };
